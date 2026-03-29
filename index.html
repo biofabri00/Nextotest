@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEXOBIO 2026 — Biodiversidad, ciencia e innovación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --magenta: #d42f8a;
+      --magenta-dark: #a01f68;
+      --magenta-light: #fce8f3;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray: #f5f5f5;
+      --gray-mid: #e0e0e0;
+      --text: #1a1a1a;
+      --muted: #666;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      height: 64px; display: flex; align-items: center;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display);
+      font-size: 1.6rem; letter-spacing: 0.05em; color: var(--white);
+    }
+    .nav-logo .x-accent { color: var(--magenta); }
+    .nav-links { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.65); font-size: 14px; font-weight: 400;
+      padding: 6px 14px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .btn-register {
+      background: var(--magenta) !important;
+      color: #fff !important;
+      border-radius: 8px; padding: 8px 20px !important;
+      font-weight: 600 !important; font-size: 14px !important;
+      transition: opacity 0.15s !important;
+    }
+    .btn-register:hover { opacity: 0.85; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(212,47,138,0.18) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 10% 80%, rgba(212,47,138,0.1) 0%, transparent 60%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      padding: 4rem 1.5rem;
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(212,47,138,0.15); border: 1px solid rgba(212,47,138,0.3);
+      color: #f07cc3; font-size: 13px; font-weight: 500;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .hero-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--magenta); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 7.5rem);
+      line-height: 0.92; letter-spacing: 0.02em;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .hero h1 .x-letter { color: var(--magenta); }
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.15em; margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .hero-tema {
+      font-size: 1rem; color: rgba(255,255,255,0.7);
+      font-style: italic; margin-bottom: 2rem;
+      border-left: 3px solid var(--magenta);
+      padding-left: 1rem; max-width: 420px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--magenta); color: #fff;
+      padding: 14px 32px; border-radius: 10px;
+      font-size: 15px; font-weight: 600;
+      transition: opacity 0.15s; display: inline-block;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,0.8);
+      padding: 13px 32px; border-radius: 10px;
+      font-size: 15px; font-weight: 400;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      transition: border-color 0.15s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); padding: 2rem;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card .date-big {
+      font-family: var(--font-display);
+      font-size: 3.5rem; color: var(--white); line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .hero-card .date-sub { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; }
+    .hero-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 1.25rem 0; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-box { text-align: center; padding: 1rem; background: rgba(255,255,255,0.04); border-radius: 10px; }
+    .stat-num { font-family: var(--font-display); font-size: 2.2rem; color: var(--magenta); line-height: 1; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .hero-orgs { margin-top: 1.5rem; }
+    .hero-orgs p { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .orgs-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .org-chip {
+      font-size: 11px; font-weight: 500;
+      background: rgba(212,47,138,0.1); border: 1px solid rgba(212,47,138,0.25);
+      color: #f07cc3; padding: 4px 10px; border-radius: 20px;
+    }
+
+    /* ── SECTIONS GENERAL ── */
+    .section { max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; }
+    .section-wrap { background: var(--white); }
+    .section-wrap.dark { background: var(--black); }
+    .section-wrap.gray { background: var(--gray); }
+    .section-tag {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--magenta); margin-bottom: 0.5rem;
+    }
+    .section-tag.light { color: rgba(212,47,138,0.8); }
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
+      margin-bottom: 0.75rem; letter-spacing: 0.02em;
+    }
+    h2.section-title.light { color: var(--white); }
+    .section-lead { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+    .section-lead.light { color: rgba(255,255,255,0.5); }
+
+    /* ── SOBRE NEXOBIO ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .mv-card {
+      background: var(--black); color: var(--white);
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .mv-card h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--magenta); margin-bottom: 6px; }
+    .mv-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .objetivos { margin-top: 1.5rem; }
+    .objetivos h4 { font-weight: 600; font-size: 15px; margin-bottom: 0.75rem; }
+    .objetivo-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 8px 0; border-bottom: 1px solid var(--gray-mid);
+    }
+    .objetivo-item:last-child { border-bottom: none; }
+    .obj-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--magenta); flex-shrink: 0; margin-top: 7px; }
+    .objetivo-item p { font-size: 14px; color: var(--muted); }
+    .tema-banner {
+      background: var(--black); border-radius: 14px;
+      padding: 2rem; color: var(--white); text-align: center;
+    }
+    .tema-banner p { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--magenta); margin-bottom: 0.5rem; }
+    .tema-banner h3 { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; }
+
+    /* ── AGENDA ── */
+    .agenda-container { display: flex; flex-direction: column; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+    .agenda-item {
+      display: grid; grid-template-columns: 120px 1fr auto;
+      gap: 1.5rem; align-items: center;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.15s;
+    }
+    .agenda-item:last-child { border-bottom: none; }
+    .agenda-item:hover { background: rgba(255,255,255,0.03); }
+    .agenda-item.highlight { background: rgba(212,47,138,0.08); }
+    .agenda-time { font-family: var(--font-display); font-size: 1rem; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+    .agenda-bloque h4 { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .agenda-bloque p { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .agenda-badge {
+      font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+      white-space: nowrap; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .badge-apertura { background: rgba(212,47,138,0.15); color: #f07cc3; border: 1px solid rgba(212,47,138,0.25); }
+    .badge-taller { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
+    .badge-break { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); }
+    .badge-presentacion { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+    .badge-panel { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+    .badge-networking { background: rgba(139,92,246,0.12); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.2); }
+    .badge-cierre { background: rgba(212,47,138,0.15); color: #f07cc3; border: 1px solid rgba(212,47,138,0.25); }
+
+    /* ── TALLERES ── */
+    .pistas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .pista-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--gray-mid);
+    }
+    .pista-header {
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .pista-header.wet { background: var(--black); }
+    .pista-header.dry { background: #0f1f3d; }
+    .pista-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .pista-icon.wet { background: rgba(212,47,138,0.2); }
+    .pista-icon.dry { background: rgba(59,130,246,0.2); }
+    .pista-header h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--white); letter-spacing: 0.04em; }
+    .pista-header p { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .pista-talleres { background: var(--white); }
+    .taller-row {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--gray-mid);
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: start; gap: 1rem;
+    }
+    .taller-row:last-child { border-bottom: none; }
+    .taller-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+    .taller-org { font-size: 12px; color: var(--muted); }
+    .taller-desc { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+    .taller-tag {
+      font-size: 10px; font-weight: 600; padding: 3px 9px;
+      border-radius: 20px; white-space: nowrap;
+      background: var(--magenta-light); color: var(--magenta-dark);
+    }
+    .taller-tag.dry { background: #dbeafe; color: #1e40af; }
+
+    /* ── ORGANIZACIONES ── */
+    .orgs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .org-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 1.25rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .org-card:hover { border-color: rgba(212,47,138,0.3); background: rgba(212,47,138,0.04); }
+    .org-initial {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(212,47,138,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.2rem;
+      color: var(--magenta); margin-bottom: 0.75rem;
+    }
+    .org-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+    .org-area { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+    .org-rol {
+      display: inline-block; font-size: 11px; font-weight: 500;
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .org-rol.principal { background: rgba(212,47,138,0.12); color: #f07cc3; }
+
+    /* ── ALCANCE ── */
+    .alcance-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .alcance-card {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--gray-mid);
+      padding: 1.5rem; text-align: center;
+    }
+    .alcance-num { font-family: var(--font-display); font-size: 2.8rem; color: var(--magenta); line-height: 1; }
+    .alcance-label { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--black);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 50% 100%, rgba(212,47,138,0.2) 0%, transparent 60%);
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto;
+      padding: 6rem 1.5rem;
+      text-align: center; position: relative; z-index: 2;
+    }
+    .cta-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--white); line-height: 0.95;
+      margin-bottom: 1.25rem; letter-spacing: 0.02em;
+    }
+    .cta-inner h2 span { color: var(--magenta); }
+    .cta-inner p { color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-size: 1rem; }
+    .cta-meta { display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; }
+    .cta-meta-item { text-align: center; }
+    .cta-meta-item .val { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); }
+    .cta-meta-item .lbl { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .cta-divider { width: 1px; background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 3rem 1.5rem 1.5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .logo {
+      font-family: var(--font-display); font-size: 2rem;
+      color: var(--white); letter-spacing: 0.04em; margin-bottom: 0.75rem;
+    }
+    .footer-brand .logo span { color: var(--magenta); }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); max-width: 280px; line-height: 1.7; }
+    .footer-brand .hashtag { font-size: 14px; color: var(--magenta); font-weight: 600; margin-top: 10px; display: block; }
+    footer h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    footer ul li { margin-bottom: 8px; }
+    footer ul li a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    footer ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,0.2);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .pistas-grid { grid-template-columns: 1fr; }
+      .alcance-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .agenda-item { grid-template-columns: 90px 1fr; }
+      .agenda-badge { display: none; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 64px; left: 0; right: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 1rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav-links.open a { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .alcance-grid { grid-template-columns: 1fr 1fr; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .orgs-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * { animation: fadeUp 0.6s ease both; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">NE<span class="x-accent">X</span>OBIO <span style="font-size:1rem;color:rgba(255,255,255,0.3);margin-left:4px">2026</span></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#talleres">Talleres</a>
+        <a href="#organizaciones">Orgs</a>
+        <a href="https://forms.google.com" class="btn-register" target="_blank">Regístrate</a>
+      </div>
+      <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          Inscripciones Abiertas · Lima, Perú
+        </div>
+        <h1>NE<span class="x-letter">X</span>O<br/>BIO<br/><span style="color:rgba(255,255,255,0.15)">2026</span></h1>
+        <div class="hero-subtitle">Simposio Interuniversitario · Ciencias Biológicas</div>
+        <div class="hero-tema">"Biodiversidad, ciencia e innovación: el Perú que viene"</div>
+        <div class="hero-ctas">
+          <a href="https://forms.google.com" class="btn-primary" target="_blank">Regístrate Gratis</a>
+          <a href="#agenda" class="btn-outline">Ver Agenda</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="date-big">25 ABR</div>
+        <div class="date-sub">Sábado 25 de Abril, 2026 · Presencial · Lima</div>
+        <div class="hero-divider"></div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-num">200</div>
+            <div class="stat-label">Asistentes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Organizaciones</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Pistas lab</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Día completo</div>
+          </div>
+        </div>
+        <div class="hero-orgs">
+          <p>Organizaciones participantes</p>
+          <div class="orgs-chips">
+            <span class="org-chip">ASM</span>
+            <span class="org-chip">SBE UTEC</span>
+            <span class="org-chip">BIOMICAS</span>
+            <span class="org-chip">RAM</span>
+            <span class="org-chip">SPB</span>
+            <span class="org-chip">BCA UTEC</span>
+            <span class="org-chip">IEEE EMBS</span>
+            <span class="org-chip">+más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <div class="section-wrap gray" id="sobre">
+    <div class="section">
+      <p class="section-tag">¿Qué es NEXOBIO?</p>
+      <h2 class="section-title">El simposio bio más importante del año</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>NEXOBIO es el simposio interuniversitario de ciencias biológicas más importante del año para estudiantes de pregrado. Es un espacio donde la ciencia se vive, se conecta y se proyecta hacia el futuro.</p>
+          <p>Organizado por <strong>ASM UTEC</strong> con el apoyo de más de 10 organizaciones estudiantiles, NEXOBIO 2026 reúne biología, microbiología, bioingeniería, bioinformática, biomédica y más en un solo evento.</p>
+          <div class="mv-grid">
+            <div class="mv-card">
+              <h4>Misión</h4>
+              <p>Crear un punto de encuentro para estudiantes de distintas carreras donde puedan explorar, conectar y construir comunidad científica en el Perú.</p>
+            </div>
+            <div class="mv-card">
+              <h4>Visión</h4>
+              <p>Consolidarse como el simposio de referencia para la comunidad bio-universitaria del país, impulsando la próxima generación de científicos.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="objetivos">
+            <h4>Objetivos del evento</h4>
+            <div class="objetivo-item"><div class="obj-dot"></div><p>Brindar una experiencia práctica e inmersiva en ciencias biológicas (wet lab y dry lab).</p></div>
+            <div class="objetivo-item"><div class="obj-dot"></div><p>Visibilizar el trabajo de organizaciones estudiantiles bio a nivel nacional.</p></div>
+            <div class="objetivo-item"><div class="obj-dot"></div><p>Conectar a estudiantes con investigadores y profesionales de la industria.</p></div>
+            <div class="objetivo-item"><div class="obj-dot"></div><p>Fomentar la exploración vocacional dentro del ecosistema de las ciencias de la vida.</p></div>
+            <div class="objetivo-item"><div class="obj-dot"></div><p>Generar redes de colaboración entre universidades del país.</p></div>
+          </div>
+          <br/>
+          <div class="tema-banner">
+            <p>Tema 2026</p>
+            <h3>Biodiversidad, ciencia e innovación:<br/>el Perú que viene</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALCANCE -->
+  <div class="section-wrap">
+    <div class="section" style="padding-top:3rem;padding-bottom:3rem">
+      <div class="alcance-grid">
+        <div class="alcance-card">
+          <div class="alcance-num">150–200</div>
+          <div class="alcance-label">Asistentes esperados</div>
+        </div>
+        <div class="alcance-card">
+          <div class="alcance-num">10+</div>
+          <div class="alcance-label">Organizaciones participantes</div>
+        </div>
+        <div class="alcance-card">
+          <div class="alcance-num">8</div>
+          <div class="alcance-label">Talleres paralelos</div>
+        </div>
+        <div class="alcance-card">
+          <div class="alcance-num">5+</div>
+          <div class="alcance-label">Universidades de Lima</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <div class="section-wrap dark" id="agenda">
+    <div class="section">
+      <p class="section-tag light">Programa</p>
+      <h2 class="section-title light">Agenda del 25 de Abril</h2>
+      <p class="section-lead light">Un día completo de talleres, presentaciones, networking y cierre.</p>
+
+      <div class="agenda-container">
+        <div class="agenda-item">
+          <div class="agenda-time">8:00 AM</div>
+          <div class="agenda-bloque">
+            <h4>Registro y Acreditación</h4>
+            <p>Entrega de kit del participante: lanyard, brochure, sticker. Bienvenida informal.</p>
+          </div>
+          <span class="agenda-badge badge-apertura">Registro</span>
+        </div>
+        <div class="agenda-item highlight">
+          <div class="agenda-time">9:00 AM</div>
+          <div class="agenda-bloque">
+            <h4>Apertura Oficial</h4>
+            <p>Palabras de bienvenida por ASM y organizaciones aliadas. Presentación del tema. Bingo Humano Científico.</p>
+          </div>
+          <span class="agenda-badge badge-apertura">Apertura</span>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-time">10:00 AM</div>
+          <div class="agenda-bloque">
+            <h4>Coffee Break 1</h4>
+            <p>Primer break. Espacio para socializar antes de los talleres.</p>
+          </div>
+          <span class="agenda-badge badge-break">Break</span>
+        </div>
+        <div class="agenda-item highlight">
+          <div class="agenda-time">10:20 AM</div>
+          <div class="agenda-bloque">
+            <h4>Bloque de Talleres — Pistas Paralelas</h4>
+            <p>Wet Lab (laboratorio práctico) vs Dry Lab (computacional). 2 rondas con diferentes organizaciones.</p>
+          </div>
+          <span class="agenda-badge badge-taller">Talleres</span>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-time">1:00 PM</div>
+          <div class="agenda-bloque">
+            <h4>Almuerzo Libre + Networking</h4>
+            <p>Mapa de orígenes: los asistentes pegan un pin en el mapa del Perú indicando su universidad.</p>
+          </div>
+          <span class="agenda-badge badge-break">Almuerzo</span>
+        </div>
+        <div class="agenda-item highlight">
+          <div class="agenda-time">2:00 PM</div>
+          <div class="agenda-bloque">
+            <h4>Presentaciones de Organizaciones e Investigadores</h4>
+            <p>Cada org tiene 8–10 min. + 1–2 charlas de investigadores/industria sobre biotecnología.</p>
+          </div>
+          <span class="agenda-badge badge-presentacion">Presentaciones</span>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-time">3:30 PM</div>
+          <div class="agenda-bloque">
+            <h4>Coffee Break 2 + Foto Challenge</h4>
+            <p>Activación en redes con hashtag oficial. Usar marco NEXOBIO2026.</p>
+          </div>
+          <span class="agenda-badge badge-break">Break</span>
+        </div>
+        <div class="agenda-item highlight">
+          <div class="agenda-time">3:45 PM</div>
+          <div class="agenda-bloque">
+            <h4>Panel de Oportunidades y Mentoring</h4>
+            <p>Panelistas y mentores comparten oportunidades nacionales e internacionales.</p>
+          </div>
+          <span class="agenda-badge badge-panel">Panel</span>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-time">4:30 PM</div>
+          <div class="agenda-bloque">
+            <h4>Networking y Juegos</h4>
+            <p>Trivia Biotech (Kahoot), Speed Networking, ¿Quién soy?, Reto colaborativo. Premios para ganadores.</p>
+          </div>
+          <span class="agenda-badge badge-networking">Networking</span>
+        </div>
+        <div class="agenda-item highlight">
+          <div class="agenda-time">5:30 PM</div>
+          <div class="agenda-bloque">
+            <h4>Cierre y Premiaciones</h4>
+            <p>Premiación mejores talleres, trivia y reto colaborativo. Palabras de cierre por ASM. Foto grupal oficial.</p>
+          </div>
+          <span class="agenda-badge badge-cierre">Cierre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TALLERES -->
+  <div class="section-wrap" id="talleres">
+    <div class="section">
+      <p class="section-tag">Talleres</p>
+      <h2 class="section-title">Elige tu pista</h2>
+      <p class="section-lead">Dos pistas paralelas — los asistentes eligen una al registrarse.</p>
+
+      <div class="pistas-grid">
+        <!-- WET LAB -->
+        <div class="pista-card">
+          <div class="pista-header wet">
+            <div class="pista-icon wet">🧪</div>
+            <div>
+              <h3>Wet Lab</h3>
+              <p>Talleres prácticos de laboratorio</p>
+            </div>
+          </div>
+          <div class="pista-talleres">
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Extracción de ADN</div>
+                <div class="taller-org">RAM / Bio Molecular</div>
+                <div class="taller-desc">Extracción de ADN de frutas. Visualización básica. Introducción a la biología molecular.</div>
+              </div>
+              <span class="taller-tag">Wet Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Siembra y Microscopía</div>
+                <div class="taller-org">ASM / Micro</div>
+                <div class="taller-desc">Cultivo en placa y observación de microorganismos. Tinción básica.</div>
+              </div>
+              <span class="taller-tag">Wet Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Biosíntesis / Fermentación</div>
+                <div class="taller-org">SBE UTEC</div>
+                <div class="taller-desc">Demostración de procesos de fermentación y producción biológica.</div>
+              </div>
+              <span class="taller-tag">Wet Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Bioquímica Aplicada</div>
+                <div class="taller-org">SPB / Bioquímica</div>
+                <div class="taller-desc">Reacciones enzimáticas visuales. Aplicaciones clínicas.</div>
+              </div>
+              <span class="taller-tag">Wet Lab</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DRY LAB -->
+        <div class="pista-card">
+          <div class="pista-header dry">
+            <div class="pista-icon dry">💻</div>
+            <div>
+              <h3>Dry Lab</h3>
+              <p>Talleres computacionales y análisis</p>
+            </div>
+          </div>
+          <div class="pista-talleres">
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Intro a Bioinformática</div>
+                <div class="taller-org">SPB</div>
+                <div class="taller-desc">Análisis de secuencias con herramientas online. Sin necesidad de programar.</div>
+              </div>
+              <span class="taller-tag dry">Dry Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Modelado de Sistemas Bio</div>
+                <div class="taller-org">BCA UTEC</div>
+                <div class="taller-desc">Introducción a modelado computacional de sistemas biológicos.</div>
+              </div>
+              <span class="taller-tag dry">Dry Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Datos en Salud / Biomédica</div>
+                <div class="taller-org">IEEE EMBS</div>
+                <div class="taller-desc">Visualización de datos clínicos. Diagnóstico asistido por IA.</div>
+              </div>
+              <span class="taller-tag dry">Dry Lab</span>
+            </div>
+            <div class="taller-row">
+              <div>
+                <div class="taller-name">Biomecánica Computacional</div>
+                <div class="taller-org">BIOMIM / Biomecánica</div>
+                <div class="taller-desc">Simulaciones básicas de movimiento y estructura biológica.</div>
+              </div>
+              <span class="taller-tag dry">Dry Lab</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANIZACIONES -->
+  <div class="section-wrap dark" id="organizaciones">
+    <div class="section">
+      <p class="section-tag light">Comunidad</p>
+      <h2 class="section-title light">Organizaciones participantes</h2>
+      <p class="section-lead light">Más de 10 organizaciones estudiantiles de distintas universidades de Lima.</p>
+
+      <div class="orgs-grid">
+        <div class="org-card">
+          <div class="org-initial">AS</div>
+          <div class="org-name">ASM UTEC</div>
+          <div class="org-area">Microbiología</div>
+          <span class="org-rol principal">Organizadora Principal</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">SB</div>
+          <div class="org-name">SBE UTEC</div>
+          <div class="org-area">Bioingeniería</div>
+          <span class="org-rol">Talleres Bioingeniería</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">BM</div>
+          <div class="org-name">BIOMICAS</div>
+          <div class="org-area">Biología</div>
+          <span class="org-rol">Participante</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">GG</div>
+          <div class="org-name">GIA GEO – UPCH</div>
+          <div class="org-area">Ingeniería Aplicada</div>
+          <span class="org-rol">Talleres Técnicos</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">IE</div>
+          <div class="org-name">IEEE EMBS</div>
+          <div class="org-area">Ingeniería Biomédica</div>
+          <span class="org-rol">Charlas y Networking</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">BC</div>
+          <div class="org-name">BCA UTEC</div>
+          <div class="org-area">Biología Computacional</div>
+          <span class="org-rol">Talleres Dry Lab</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">BM</div>
+          <div class="org-name">BIOMIM</div>
+          <div class="org-area">Biomimética</div>
+          <span class="org-rol">Presentación Proyectos</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">RA</div>
+          <div class="org-name">RAM</div>
+          <div class="org-area">Biología Molecular</div>
+          <span class="org-rol">Talleres Wet Lab</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">SP</div>
+          <div class="org-name">SPB</div>
+          <div class="org-area">Bioquímica</div>
+          <span class="org-rol">Talleres Wet Lab</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">UB</div>
+          <div class="org-name">UBC</div>
+          <div class="org-area">Biomecánica</div>
+          <span class="org-rol">Presentaciones</span>
+        </div>
+        <div class="org-card">
+          <div class="org-initial">PH</div>
+          <div class="org-name">Proyecto HELA</div>
+          <div class="org-area">Biomédica</div>
+          <span class="org-rol">Charlas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <h2>¿LISTO PARA<br/><span>NEXOBIO</span><br/>2026?</h2>
+      <p>El simposio bio más grande del año te espera.<br/>Registro gratuito — cupos limitados.</p>
+      <a href="https://forms.google.com" class="btn-primary" target="_blank" style="font-size:16px;padding:16px 40px">Regístrate Ahora</a>
+      <div class="cta-meta">
+        <div class="cta-meta-item">
+          <div class="val">25 ABR</div>
+          <div class="lbl">Fecha del evento</div>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-meta-item">
+          <div class="val">Lima</div>
+          <div class="lbl">Presencial</div>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-meta-item">
+          <div class="val">Gratis</div>
+          <div class="lbl">Entrada libre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">NE<span>X</span>OBIO 2026</div>
+        <p>Simposio interuniversitario de ciencias biológicas. Organizado por ASM UTEC con el apoyo de organizaciones estudiantiles de Lima.</p>
+        <span class="hashtag">#NEXOBIO2026</span>
+      </div>
+      <div>
+        <h4>Evento</h4>
+        <ul>
+          <li><a href="#sobre">Sobre NEXOBIO</a></li>
+          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#talleres">Talleres</a></li>
+          <li><a href="#organizaciones">Organizaciones</a></li>
+          <li><a href="https://forms.google.com" target="_blank">Registro</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:cbsunmsm@gmail.com">asmutec@gmail.com</a></li>
+          <li><a href="#">Lima, Perú</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NEXOBIO — ASM UTEC. Todos los derechos reservados.</span>
+      <span>#NEXOBIO2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
