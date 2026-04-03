@@ -114,12 +114,22 @@
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(4.5rem, 10vw, 8.5rem);
-      line-height: 0.88; letter-spacing: 0.03em;
-      color: var(--white); margin-bottom: 0.75rem;
+      /* Aumentamos el tamaño base para que ocupe más espacio */
+      font-size: clamp(5rem, 11vw, 9.5rem); 
+      line-height: 0.85; /* Interlineado apretado como el antiguo */
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 1rem;
     }
     .hero h1 .cx { color: var(--cyan); text-shadow: 0 0 40px rgba(20,219,242,0.4); }
-    .hero h1 .mg { color: var(--magenta); text-shadow: 0 0 40px rgba(239,46,242,0.4); }
+    /* El año 2026 debe ser igual de sólido que NEXO BIO */
+    .hero h1 .mg {
+      color: var(--magenta); /* Mantenemos tu nuevo rosa neón */
+      font-size: 1em; /* IMPORTANTE: Cambia el 0.55em por 1em */
+      letter-spacing: 0; /* Quitamos el espaciado ancho */
+      display: block;
+      text-shadow: 0 0 40px rgba(239,46,242,0.4); /* Brillo neón */
+    }
     .hero-sub {
       font-family: var(--font-display);
       font-size: clamp(0.9rem, 1.8vw, 1.2rem);
@@ -168,7 +178,11 @@
       padding: 0.9rem; text-align: center;
       border: 1px solid var(--border);
     }
-    .stat-n { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+    .stat-n {
+      font-family: var(--font-display);
+      font-size: 2.8rem; /* Aumentamos de 2rem a 2.8rem para igualar al antiguo */
+      line-height: 1;
+    }
     .stat-n.c1 { color: var(--cyan); }
     .stat-n.c2 { color: var(--lime); }
     .stat-n.c3 { color: var(--magenta); }
@@ -491,7 +505,7 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span>Inscripciones Abiertas · Lima, Perú</div>
-      <h1>NE<span class="cx">X</span>O<br/>BIO<br/><span class="mg" style="font-size:0.55em;letter-spacing:0.12em">2026</span></h1>
+      <h1>NE<span class="cx">X</span>O<br/>BIO<br/><span class="mg">2026</span></h1>
       <div class="hero-sub">II Simposio Interuniversitario · Ciencias Biológicas</div>
       <div class="hero-tema">"Biodiversidad, ciencia e innovación: el Perú que viene"</div>
       <div class="hero-ctas">
