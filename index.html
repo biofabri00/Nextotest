@@ -387,10 +387,36 @@
     .f-brand p { font-size: 12px; color: rgba(255,255,255,0.3); max-width: 260px; line-height: 1.7; }
     .f-brand .ht { font-size: 13px; color: var(--magenta); font-weight: 600; margin-top: 10px; display: block; }
     .f-brand .asm-logo { height: 36px; margin-bottom: 1rem; }
-    footer h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.25); margin-bottom: 1rem; }
-    footer ul li { margin-bottom: 6px; }
-    footer ul li a { font-size: 13px; color: rgba(255,255,255,0.4); transition: color 0.15s; }
-    footer ul li a:hover { color: var(--white); }
+/* Títulos como en la imagen: Blancos, negrita y más grandes */
+    footer h4 { 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      text-transform: none; /* Quitamos las mayúsculas pequeñas */
+      letter-spacing: 0.02em; 
+      color: var(--white); 
+      margin-bottom: 1.2rem; 
+    }
+
+    /* Espaciado entre los elementos de la lista */
+    footer ul li { 
+      margin-bottom: 10px; 
+      list-style: none; /* Asegura que no haya puntos */
+    }
+
+    /* Enlaces con el color azulado y tamaño de la imagen */
+    footer ul li a { 
+      font-size: 1rem; 
+      color: #EF2EF2; /* El azul claro de tu captura */
+      transition: color 0.15s; 
+      display: block; 
+    }
+
+    /* Efecto al pasar el mouse */
+    footer ul li a:hover { 
+      color: var(--magenta); 
+    }
+
+    /* Mantenemos el fondo del footer-bottom igual */
     .footer-bottom {
       max-width: 1140px; margin: 0 auto;
       padding: 1rem 1.5rem;
@@ -672,22 +698,20 @@
     </div>
     <div>
       <h4>Evento</h4>
-      <ul>
-        <a href="#sobre">Sobre NEXOBIO</a>
-        <a href="#agenda">Agenda</a>
-        <a href="#talleres">Talleres</a>
-        <a href="#organizaciones">Organizaciones</a>
-        <a href="#sponsors">Sponsors</a>
-        <a href="https://forms.google.com" target="_blank">Registro</a>
+      <ul class="footer-list">
+        <li><a href="#agenda">Programa</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="https://forms.google.com" target="_blank">Registro</a></li>
       </ul>
     </div>
     <div>
       <h4>Contacto</h4>
-      <ul>
-        <a href="mailto:asm@utec.edu.pe">asm@utec.edu.pe</a>
-        <a href="#">Lima, Perú</a>
-        <a href="https://www.instagram.com/asm.utec/" target="_blank">Instagram</a>
-        <a href="https://www.linkedin.com/company/asm-student-chapter-utec/" target="_blank">LinkedIn</a>
+      <ul class="footer-list">
+        <li><a href="mailto:asm@utec.edu.pe">asm@utec.edu.pe</a></li>
+        <li><a href="#">Lima, Perú</a></li>
+        <li><a href="https://www.instagram.com/asm.utec/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/asm-student-chapter-utec/" target="_blank">LinkedIn</a></li>
       </ul>
     </div>
   </div>
