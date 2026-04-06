@@ -534,6 +534,12 @@
     
     /* SPONSORS — solo orange */
     .sw-or .s-tag { color: var(--orange) !important; }
+
+    /* Wet Lab — magenta, Dry Lab — lime */
+    .sw-lm .pista-head.wet { background: rgba(239,46,242,0.08); border-bottom-color: rgba(239,46,242,0.2); }
+    .sw-lm .pista-head.wet h3 { color: var(--magenta); }
+    .sw-lm .pista-icon.wet { background: rgba(239,46,242,0.15); }
+    .sw-lm .t-tag.wet { background: rgba(239,46,242,0.12); color: var(--magenta); border-color: rgba(239,46,242,0.2); }
     
   </style>
 </head>
@@ -542,10 +548,9 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="images/asm-logo.png" alt="ASM UTEC" style="height:32px;width:auto"/>
-      <span class="nav-logo-text" style="font-size:1.2rem;margin-left:4px">NE<span class="x">X</span>OBIO 2026</span>
-    </a>
+    <div class="nav-logo">
+      <span class="nav-logo-text">NE<span class="x">X</span>OBIO 2026</span>
+    </div>
     <div class="nav-links" id="navLinks">
       <a href="#sobre">Sobre</a>
       <a href="#agenda">Agenda</a>
@@ -586,7 +591,7 @@
       <div class="stats-grid">
         <div class="stat"><div class="stat-n c1">200</div><div class="stat-l">Asistentes</div></div>
         <div class="stat"><div class="stat-n c2">10+</div><div class="stat-l">Organizaciones</div></div>
-        <div class="stat"><div class="stat-n c3">8</div><div class="stat-l">Talleres</div></div>
+        <div class="stat"><div class="stat-n c3">12</div><div class="stat-l">Talleres</div></div>
         <div class="stat"><div class="stat-n c4">2</div><div class="stat-l">Pistas lab</div></div>
       </div>
       <div class="hc-orgs">
@@ -649,7 +654,7 @@
     <div class="stats-bar">
       <div class="sb-item"><div class="sb-num" style="color:var(--cyan)">150–200</div><div class="sb-label">Asistentes esperados</div></div>
       <div class="sb-item"><div class="sb-num" style="color:var(--lime)">10+</div><div class="sb-label">Organizaciones participantes</div></div>
-      <div class="sb-item"><div class="sb-num" style="color:var(--magenta)">8</div><div class="sb-label">Talleres paralelos</div></div>
+      <div class="sb-item"><div class="sb-num" style="color:var(--magenta)">12</div><div class="sb-label">Talleres paralelos</div></div>
       <div class="sb-item"><div class="sb-num" style="color:var(--orange)">5+</div><div class="sb-label">Universidades de Lima</div></div>
     </div>
   </div>
@@ -745,55 +750,17 @@
 </div>
 
 <!-- EQUIPO -->
-<div class="sw-mg2" id="equipo">
-  <div class="section">
-    <p class="s-tag mg">Organización</p>
-    <h2 class="s-title">Equipo organizador</h2>
-    <p class="s-lead">Las personas detrás de NEXOBIO 2026.</p>
-    <div class="equipo-grid">
-
-      <!-- Duplica este bloque para cada integrante -->
-      <div class="eq-card">
-        <div class="eq-foto">
-          <!-- Cuando tengas foto: <img src="images/nombre.jpg"/> -->
-          <span>AB</span>
-        </div>
-        <div class="eq-name">Ana Bermúdez</div>
-        <div class="eq-rol">Coordinación General</div>
-      </div>
-
-      <div class="eq-card">
-        <div class="eq-foto"><span>MR</span></div>
-        <div class="eq-name">Marco Ríos</div>
-        <div class="eq-rol">Marketing</div>
-      </div>
-
-      <div class="eq-card">
-        <div class="eq-foto"><span>LP</span></div>
-        <div class="eq-name">Lucía Pérez</div>
-        <div class="eq-rol">Talleres</div>
-      </div>
-
-      <div class="eq-card">
-        <div class="eq-foto"><span>DT</span></div>
-        <div class="eq-name">Diego Torres</div>
-        <div class="eq-rol">Logística</div>
-      </div>
-
-      <div class="eq-card">
-        <div class="eq-foto"><span>VS</span></div>
-        <div class="eq-name">Valeria Silva</div>
-        <div class="eq-rol">Relaciones</div>
-      </div>
-
-      <div class="eq-card">
-        <div class="eq-foto"><span>GC</span></div>
-        <div class="eq-name">Gabriel Castro</div>
-        <div class="eq-rol">Finanzas</div>
-      </div>
-
-    </div>
-  </div>
+<div class="equipo-grid">
+  <div class="eq-card"><div class="eq-foto"><span>CP</span></div><div class="eq-name">Claudia Pérez</div><div class="eq-rol">Presidenta</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>FF</span></div><div class="eq-name">Fabrizio Flores</div><div class="eq-rol">Vicepresidente</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>IB</span></div><div class="eq-name">Ivanna Baigorria</div><div class="eq-rol">Finanzas y Logística</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>JP</span></div><div class="eq-name">Joaquín Pinto</div><div class="eq-rol">Secretario</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>VV</span></div><div class="eq-name">Victoria Vargas</div><div class="eq-rol">Relaciones Públicas</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>SC</span></div><div class="eq-name">Sofia Chumpitaz</div><div class="eq-rol">Eventos</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>AL</span></div><div class="eq-name">Alejandra León</div><div class="eq-rol">Investigación</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>ALu</span></div><div class="eq-name">Andrea Luksic</div><div class="eq-rol">Divulgación Científica</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>GZ</span></div><div class="eq-name">Gabriel Zuñiga</div><div class="eq-rol">Comunidad</div></div>
+  <div class="eq-card"><div class="eq-foto"><span>DV</span></div><div class="eq-name">Daniela Vasquez</div><div class="eq-rol">Marketing</div></div>
 </div>
   
 <!-- SPONSORS -->
