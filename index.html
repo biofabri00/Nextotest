@@ -24,22 +24,8 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--black); color: var(--white); line-height: 1.65; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    /* Bloqueo anti-copy para todas las imágenes */
-    img {
-      -webkit-user-drag: none;    /* Evita arrastrar la imagen */
-      -webkit-touch-callout: none; /* Evita menú emergente en móviles */
-      user-select: none;          /* Evita que se resalte/seleccione */
-      pointer-events: none;       /* Hace que la imagen sea "invisible" a clics */
-    }
-
-    /* Si tienes imágenes que SÍ son botones (como el logo de la nav), 
-       usa esta clase para que el link siga funcionando */
-    .nav-logo img, .btn-primary, .btn-ghost {
-      pointer-events: auto !important;
-    }
     
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 300;
       height: 64px; display: flex; align-items: center;
@@ -51,11 +37,10 @@
       padding: 0 1.5rem;
       display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo img { height: 36px; width: auto; object-fit: contain; }
     .nav-logo-text {
       font-family: var(--font-display);
       font-size: 1.5rem; letter-spacing: 0.06em; color: var(--white);
+      cursor: pointer;
     }
     .nav-logo-text .x { color: var(--lime); }
     .nav-links { display: flex; align-items: center; gap: 2px; }
@@ -69,27 +54,14 @@
       background: var(--magenta) !important; color: #000 !important;
       font-weight: 600 !important; border-radius: 8px;
       padding: 8px 18px !important; font-size: 13px !important;
-      transition: opacity 0.15s !important;
     }
-    .nav-register:hover { opacity: 0.85; }
-    .hamburger { display: none; background: none; border: none; cursor: pointer; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh; padding-top: 64px;
       display: flex; align-items: center;
       position: relative; overflow: hidden;
       background: var(--black);
-    }
-    /* fondo tipo flyer */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 55% 55% at 75% 40%, rgba(20,219,242,0.10) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(239,46,242,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 30% 30% at 50% 90%, rgba(192,217,10,0.08) 0%, transparent 55%);
     }
     .hero-dots {
       position: absolute; inset: 0; opacity: 0.06;
@@ -102,450 +74,69 @@
       position: relative; z-index: 2;
       display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center;
     }
+    .hero h1 {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-size: clamp(5rem, 11vw, 9.5rem); 
+      line-height: 0.85; 
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .hero h1 .cx { color: var(--cyan); }
+    .hero h1 .mg {
+      color: var(--magenta);
+      font-size: 1em;
+      display: block;
+      text-shadow: 0 0 40px rgba(239,46,242,0.4);
+    }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid rgba(192,217,10,0.35);
       background: rgba(192,217,10,0.08);
       color: var(--lime); font-size: 12px; font-weight: 500;
       padding: 6px 14px; border-radius: 20px; margin-bottom: 1.5rem;
-      letter-spacing: 0.05em; text-transform: uppercase;
+      text-transform: uppercase;
     }
-    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); animation: blink 1.5s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-    .hero h1 {
-      font-family: var(--font-display);
-      /* Aumentamos el tamaño base para que ocupe más espacio */
-      font-size: clamp(5rem, 11vw, 9.5rem); 
-      line-height: 0.85; /* Interlineado apretado como el antiguo */
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .hero h1 .cx { color: var(--cyan); text-shadow: 0 0 40px rgba(20,219,242,0.4); }
-    /* El año 2026 debe ser igual de sólido que NEXO BIO */
-    .hero h1 .mg {
-      color: var(--magenta); /* Mantenemos tu nuevo rosa neón */
-      font-size: 1em; /* IMPORTANTE: Cambia el 0.55em por 1em */
-      letter-spacing: 0; /* Quitamos el espaciado ancho */
-      display: block;
-      text-shadow: 0 0 40px rgba(239,46,242,0.4); /* Brillo neón */
-    }
-    .hero-sub {
-      font-family: var(--font-display);
-      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-      color: rgba(255,255,255,0.35); letter-spacing: 0.18em;
-      text-transform: uppercase; margin-bottom: 1rem;
-    }
-    .hero-tema {
-      font-size: 0.95rem; color: rgba(255,255,255,0.65);
-      font-style: italic; border-left: 3px solid var(--lime);
-      padding-left: 1rem; margin-bottom: 2.25rem; max-width: 440px;
-      line-height: 1.6;
-    }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--magenta); color: #000;
-      padding: 13px 30px; border-radius: 10px;
-      font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
-      transition: opacity 0.15s; display: inline-block;
-    }
-    .btn-primary:hover { opacity: 0.85; }
-    .btn-ghost {
-      background: transparent; color: rgba(255,255,255,0.75);
-      padding: 12px 30px; border-radius: 10px; font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: border-color 0.15s; display: inline-block;
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
 
-    /* hero card */
+    /* HERO CARD */
     .hero-card {
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius); padding: 1.75rem;
       backdrop-filter: blur(10px);
     }
-    .hc-date {
-      font-family: var(--font-display);
-      font-size: 3rem; color: var(--white); line-height: 1;
-    }
-    .hc-date span { color: var(--cyan); }
-    .hc-sub { font-size: 12px; color: var(--muted); margin-top: 4px; margin-bottom: 1.25rem; letter-spacing: 0.04em; }
-    .hc-divider { height: 1px; background: var(--border); margin: 1.1rem 0; }
     .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .stat {
       background: rgba(255,255,255,0.03); border-radius: 10px;
-      padding: 0.9rem; text-align: center;
-      border: 1px solid var(--border);
+      padding: 0.9rem; text-align: center; border: 1px solid var(--border);
     }
-    .stat-n {
-      font-family: var(--font-display);
-      font-size: 2.8rem; /* Aumentamos de 2rem a 2.8rem para igualar al antiguo */
-      line-height: 1;
-    }
-    .stat-n.c1 { color: var(--magenta); }
-    .stat-n.c2 { color: var(--magenta); }
-    .stat-n.c3 { color: var(--magenta); }
-    .stat-n.c4 { color: var(--magenta); }
-    .stat-l { font-size: 10px; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .hc-orgs { margin-top: 1.25rem; }
-    .hc-orgs-label { font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .stat-n { font-family: var(--font-display); font-size: 2.8rem; line-height: 1; }
+    
+    /* CLASES DE COLOR ESPECÍFICAS */
+    .stat-n.c-magenta { color: var(--magenta); }
+    
+    .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;}
     .chip {
       font-size: 10px; font-weight: 500; padding: 3px 9px; border-radius: 20px;
-      border: 1px solid rgba(20,219,242,0.25); background: rgba(20,219,242,0.06); color: var(--cyan);
+      border: 1px solid rgba(192,217,10,0.25); 
+      background: rgba(192,217,10,0.06); 
+      color: var(--lime);
     }
-    .chip.mg { border-color: rgba(239,46,242,0.25); background: rgba(239,46,242,0.06); color: var(--magenta); }
-    .chip.lm { border-color: rgba(192,217,10,0.25); background: rgba(192,217,10,0.06); color: var(--lime); }
-    .chip.or { border-color: rgba(242,157,54,0.25); background: rgba(242,157,54,0.06); color: var(--orange); }
 
-    /* ── SECTION BASE ── */
-    .sw { background: var(--black); }
-    .sw2 { background: var(--black2); }
-    .sw3 { background: #0a0a0c; }
+    /* ESTILOS GENERALES DE SECCIÓN */
     .section { max-width: 1140px; margin: 0 auto; padding: 5rem 1.5rem; }
-    .s-tag {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; margin-bottom: 0.5rem;
-    }
-    .s-tag.cy { color: var(--cyan); }
-    .s-tag.mg { color: var(--magenta); }
-    .s-tag.lm { color: var(--lime); }
-    .s-tag.or { color: var(--orange); }
-    h2.s-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05;
-      letter-spacing: 0.03em; margin-bottom: 0.75rem; color: var(--white);
-    }
-    .s-lead { font-size: 0.95rem; color: var(--muted); max-width: 540px; margin-bottom: 3rem; }
+    .sw2 { background: var(--black2); }
+    .btn-primary { background: var(--magenta); color: #000; padding: 13px 30px; border-radius: 10px; font-weight: 700; display: inline-block; }
+    .btn-ghost { background: transparent; color: rgba(255,255,255,0.75); padding: 12px 30px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); display: inline-block; }
 
-    /* ── SOBRE ── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; font-size: 0.95rem; }
-    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .mv-card {
-      border-radius: 12px; padding: 1.25rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-    }
-    .mv-card h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
-    .mv-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .mv-card.cy h4 { color: var(--cyan); }
-    .mv-card.mg h4 { color: var(--magenta); }
-    .objetivos-list { margin-top: 0; }
-    .obj-item {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-    }
-    .obj-item:last-child { border-bottom: none; }
-    .obj-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-    .obj-item p { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .tema-banner {
-      margin-top: 1.5rem;
-      border-radius: 12px; padding: 1.5rem;
-      border: 1px solid rgba(192,217,10,0.2);
-      background: rgba(192,217,10,0.04);
-      text-align: center;
-    }
-    .tema-banner p { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--lime); margin-bottom: 6px; }
-    .tema-banner h3 { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.25; color: var(--white); }
-
-    /* ── STATS BAR ── */
-    .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
-    .sb-item { background: var(--black2); padding: 2rem 1.5rem; text-align: center; }
-    .sb-num { font-family: var(--font-display); font-size: 2.8rem; line-height: 1; }
-    .sb-label { font-size: 12px; color: var(--muted); margin-top: 6px; }
-
-    /* ── AGENDA ── */
-    .agenda-list { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-    .ag-item {
-      display: grid; grid-template-columns: 110px 1fr auto;
-      gap: 1.5rem; align-items: center;
-      padding: 1.1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
-    .ag-item:last-child { border-bottom: none; }
-    .ag-item:hover { background: rgba(255,255,255,0.02); }
-    .ag-item.hl { background: rgba(20,219,242,0.04); }
-    .ag-time { font-family: var(--font-display); font-size: 0.95rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
-    .ag-info h4 { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
-    .ag-info p { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .ag-badge {
-      font-size: 10px; font-weight: 600; padding: 4px 11px; border-radius: 20px;
-      white-space: nowrap; text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .b-cy  { background: rgba(20,219,242,0.1);  color: var(--cyan);    border: 1px solid rgba(20,219,242,0.2); }
-    .b-mg  { background: rgba(239,46,242,0.1);  color: var(--magenta); border: 1px solid rgba(239,46,242,0.2); }
-    .b-lm  { background: rgba(192,217,10,0.1);  color: var(--lime);    border: 1px solid rgba(192,217,10,0.2); }
-    .b-or  { background: rgba(242,157,54,0.1);  color: var(--orange);  border: 1px solid rgba(242,157,54,0.2); }
-    .b-wh  { background: rgba(255,255,255,0.04); color: var(--muted);  border: 1px solid var(--border); }
-
-    /* ── TALLERES ── */
-    .pistas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .pista-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-    .pista-head {
-      padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px;
-    }
-    .pista-head.wet { background: rgba(239,46,242,0.08); border-bottom: 1px solid rgba(239,46,242,0.15); }
-    .pista-head.dry { background: rgba(20,219,242,0.08); border-bottom: 1px solid rgba(20,219,242,0.15); }
-    .pista-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    .pista-icon.wet { background: rgba(239,46,242,0.15); }
-    .pista-icon.dry { background: rgba(20,219,242,0.15); }
-    .pista-head h3 { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.04em; }
-    .pista-head.wet h3 { color: var(--magenta); }
-    .pista-head.dry h3 { color: var(--cyan); }
-    .pista-head p { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .taller-row {
-      padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start;
-      background: rgba(255,255,255,0.01);
-    }
-    .taller-row:last-child { border-bottom: none; }
-    .taller-row:hover { background: rgba(255,255,255,0.03); }
-    .t-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
-    .t-org  { font-size: 11px; color: var(--muted); }
-    .t-desc { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; line-height: 1.5; }
-    .t-tag  { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
-    .t-tag.wet { background: rgba(239,46,242,0.12); color: var(--magenta); border: 1px solid rgba(239,46,242,0.2); }
-    .t-tag.dry { background: rgba(20,219,242,0.12); color: var(--cyan);    border: 1px solid rgba(20,219,242,0.2); }
-
-    /* ── ORGANIZACIONES ── */
-    .orgs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 1rem; }
-    .org-card {
-      border-radius: 12px; padding: 1.25rem;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      transition: border-color 0.2s, background 0.2s;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .org-card:hover { border-color: rgba(20,219,242,0.25); background: rgba(20,219,242,0.03); }
-    .org-logo-box {
-      width: 72px; height: 72px; border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 1.2rem;
-      overflow: hidden;
-    }
-    .org-logo-box img { width: 100%; height: 100%; object-fit: contain; }
-    .org-name { font-size: 13px; font-weight: 600; color: var(--white); }
-    .org-area { font-size: 11px; color: var(--muted); }
-    .org-rol {
-      display: inline-block; font-size: 10px; font-weight: 500;
-      padding: 3px 9px; border-radius: 20px; width: fit-content;
-      background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4);
-    }
-    .org-rol.main { background: rgba(239,46,242,0.12); color: var(--magenta); }
-
-    /* ── EQUIPO ── */
-    .equipo-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
-    }
-    .eq-card {
-      text-align: center;
-      padding: 1.25rem 0.75rem;
-      border-radius: 12px;
-      border: 1px solid rgba(239,46,242,0.08);
-      background: rgba(239,46,242,0.02);
-      transition: border-color 0.2s;
-    }
-    .eq-card:hover { border-color: rgba(239,46,242,0.25); }
-    .eq-foto {
-      width: 72px; height: 72px; border-radius: 50%;
-      margin: 0 auto 0.75rem;
-      background: rgba(239,46,242,0.12);
-      border: 2px solid rgba(239,46,242,0.2);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-      font-family: var(--font-display); font-size: 1.2rem; color: var(--magenta);
-    }
-    .eq-foto img { width: 100%; height: 100%; object-fit: cover; }
-    .eq-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
-    .eq-rol  { font-size: 11px; color: var(--muted); }
-    @media (max-width: 900px) { .equipo-grid { grid-template-columns: repeat(3,1fr); } }
-    @media (max-width: 500px) { .equipo-grid { grid-template-columns: repeat(2,1fr); } }
-    
-    /* ── SPONSORS ── */
-    .sponsors-section { text-align: center; }
-    .sponsors-grid {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; align-items: center;
-      gap: 1.5rem; margin-top: 2rem;
-    }
-    .sponsor-slot {
-      width: 160px; height: 80px; border-radius: 10px;
-      border: 1px dashed rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.02);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: rgba(255,255,255,0.2);
-      transition: border-color 0.2s;
-    }
-    .sponsor-slot:hover { border-color: rgba(255,255,255,0.25); }
-    .sponsor-slot img { width: 100%; height: 100%; object-fit: contain; padding: 12px; filter: brightness(0) invert(1); opacity: 0.6; }
-
-    /* ── CTA ── */
-    .cta-wrap {
-      position: relative; overflow: hidden;
-      background: var(--black);
-    }
-    .cta-wrap::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 50% 110%, rgba(239,46,242,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 80% 0%, rgba(20,219,242,0.1) 0%, transparent 55%);
-    }
-    .cta-inner {
-      max-width: 680px; margin: 0 auto;
-      padding: 6rem 1.5rem; text-align: center;
-      position: relative; z-index: 2;
-    }
-    .cta-inner h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      line-height: 0.92; letter-spacing: 0.03em; color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .cta-inner h2 .cx { color: var(--cyan); }
-    .cta-inner h2 .mg { color: var(--magenta); }
-    .cta-inner p { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
-    .cta-pills { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
-    .cta-pill { text-align: center; }
-    .cta-pill .v { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); }
-    .cta-pill .l { font-size: 11px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
-
-    /* ── FOOTER ── */
-    footer { background: #040406; border-top: 1px solid var(--border); }
-    .footer-inner {
-      max-width: 1140px; margin: 0 auto;
-      padding: 3rem 1.5rem 1.5rem;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
-    }
-    .f-brand .logo {
-      font-family: var(--font-display); font-size: 1.8rem;
-      color: var(--white); letter-spacing: 0.05em; margin-bottom: 0.75rem;
-    }
-    .f-brand .logo .x { color: var(--lime); }
-    .f-brand p { font-size: 12px; color: rgba(255,255,255,0.3); max-width: 260px; line-height: 1.7; }
-    .f-brand .ht { font-size: 13px; color: var(--magenta); font-weight: 600; margin-top: 10px; display: block; }
-    .f-brand .asm-logo { height: 36px; margin-bottom: 1rem; }
-/* Títulos como en la imagen: Blancos, negrita y más grandes */
-    footer h4 { 
-      font-size: 1.2rem; 
-      font-weight: 700; 
-      text-transform: none; /* Quitamos las mayúsculas pequeñas */
-      letter-spacing: 0.02em; 
-      color: var(--white); 
-      margin-bottom: 1.2rem; 
-    }
-
-    /* Espaciado entre los elementos de la lista */
-    footer ul li { 
-      margin-bottom: 10px; 
-      list-style: none; /* Asegura que no haya puntos */
-    }
-
-    /* Enlaces con el color azulado y tamaño de la imagen */
-    footer ul li a { 
-      font-size: 1rem; 
-      color: #6fb2d2; /* El azul claro de tu captura */
-      transition: color 0.15s; 
-      display: block; 
-    }
-
-    /* Efecto al pasar el mouse */
-    footer ul li a:hover { 
-      color: var(--magenta); 
-    }
-
-    /* Mantenemos el fondo del footer-bottom igual */
-    .footer-bottom {
-      max-width: 1140px; margin: 0 auto;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between;
-      font-size: 11px; color: rgba(255,255,255,0.18);
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-card { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .pistas { grid-template-columns: 1fr; }
-      .stats-bar { grid-template-columns: 1fr 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .ag-item { grid-template-columns: 90px 1fr; }
-      .ag-badge { display: none; }
     }
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; top: 64px; left: 0; right: 0;
-        background: rgba(7,7,9,0.98);
-        padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-        z-index: 299;
-      }
-      .nav-links.open a { padding: 10px 0; border-bottom: 1px solid var(--border); }
-      .mv-grid { grid-template-columns: 1fr; }
-      .orgs-grid { grid-template-columns: 1fr 1fr; }
-      .stats-bar { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* ── FADE IN ── */
-    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-    .hero-content > * { animation: fadeUp 0.55s ease both; }
-    .hero-content > *:nth-child(1){animation-delay:0.1s}
-    .hero-content > *:nth-child(2){animation-delay:0.2s}
-    .hero-content > *:nth-child(3){animation-delay:0.3s}
-    .hero-content > *:nth-child(4){animation-delay:0.4s}
-    .hero-content > *:nth-child(5){animation-delay:0.5s}
-
-    /* ── COLOR POR SECCIÓN — solo 1 acento dominante ── */
-    
-    /* HERO — magenta principal, cyan solo en la X, lime solo en el badge */
-    .hero .stat-n.c2 { color: var(--magenta); }
-    .hero .stat-n.c3 { color: var(--magenta); }
-    .hero .stat-n.c4 { color: var(--cyan); }
-    .hero .chip.lm   { border-color: rgba(239,46,242,0.25); background: rgba(239,46,242,0.06); color: var(--magenta); }
-    .hero .chip.or   { border-color: rgba(20,219,242,0.25); background: rgba(20,219,242,0.06); color: var(--cyan); }
-    
-    /* SOBRE — solo magenta */
-    .sw-mg .obj-dot  { background: var(--magenta) !important; }
-    
-    /* AGENDA — solo cyan */
-    .sw .ag-badge.b-lm { background: rgba(20,219,242,0.1); color: var(--cyan); border-color: rgba(20,219,242,0.2); }
-    .sw .ag-badge.b-or { background: rgba(20,219,242,0.1); color: var(--cyan); border-color: rgba(20,219,242,0.2); }
-    
-    /* TALLERES — solo lime */
-    .sw-lm .t-tag.wet { background: rgba(192,217,10,0.12); color: var(--lime); border: 1px solid rgba(192,217,10,0.2); }
-    .sw-lm .t-tag.dry { background: rgba(192,217,10,0.12); color: var(--lime); border: 1px solid rgba(192,217,10,0.2); }
-    .sw-lm .pista-head.wet { background: rgba(192,217,10,0.06); border-bottom-color: rgba(192,217,10,0.15); }
-    .sw-lm .pista-head.dry { background: rgba(192,217,10,0.06); border-bottom-color: rgba(192,217,10,0.15); }
-    .sw-lm .pista-head.wet h3,
-    .sw-lm .pista-head.dry h3 { color: var(--lime); }
-    
-    /* ORGS — solo magenta */
-    .sw-mg2 .org-logo-box { color: var(--magenta); }
-    
-    /* SPONSORS — solo orange */
-    .sw-or .s-tag { color: var(--orange) !important; }
-
-    /* Wet Lab — magenta, Dry Lab — lime */
-    .sw-lm .pista-head.wet { background: rgba(239,46,242,0.08); border-bottom-color: rgba(239,46,242,0.2); }
-    .sw-lm .pista-head.wet h3 { color: var(--magenta); }
-    .sw-lm .pista-icon.wet { background: rgba(239,46,242,0.15); }
-    .sw-lm .t-tag.wet { background: rgba(239,46,242,0.12); color: var(--magenta); border-color: rgba(239,46,242,0.2); }
-    
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
@@ -560,281 +151,54 @@
       <a href="#sponsors">Sponsors</a>
       <a href="https://forms.google.com" class="nav-register" target="_blank">Regístrate</a>
     </div>
-    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-dots"></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span>Inscripciones Abiertas · Lima, Perú</div>
-      <h1 style="font-family:'Big Shoulders Display',var(--font-display)">
+      <h1>
         NE<span class="cx">X</span>O<br/>
         BIO<br/>
-        <span class="mg" style="font-size:1em;letter-spacing:0.02em;display:block;">2026</span>
+        <span class="mg">2026</span>
       </h1>
-      <div class="hero-sub">II Simposio Interuniversitario · Ciencias Biológicas</div>
-      <div class="hero-tema">"Biodiversidad, ciencia e innovación: el Perú que viene"</div>
+      <div style="text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.35); margin-bottom: 1rem;">II Simposio Interuniversitario · Ciencias Biológicas</div>
+      <div style="font-style: italic; border-left: 3px solid var(--lime); padding-left: 1rem; margin-bottom: 2.25rem; color: rgba(255,255,255,0.65);">"Biodiversidad, ciencia e innovación: el Perú que viene"</div>
       <div class="hero-ctas">
         <a href="https://forms.google.com" class="btn-primary" target="_blank">Regístrate Gratis</a>
         <a href="#agenda" class="btn-ghost">Ver Agenda</a>
       </div>
     </div>
+
     <div class="hero-card">
-      <div class="hc-date"><span>25</span> ABR</div>
-      <div class="hc-sub">Sábado 25 de Abril · 9:00–18:00 · Lima, Perú · Presencial</div>
-      <div class="hc-divider"></div>
+      <div style="font-family: var(--font-display); font-size: 3rem;">25 <span style="color:var(--cyan)">ABR</span></div>
+      <div style="font-size: 12px; color: var(--muted); margin-bottom: 1.25rem;">Sábado 25 de Abril · Lima, Perú</div>
+      
       <div class="stats-grid">
-        <div class="stat"><div class="stat-n c2">200</div><div class="stat-l">Asistentes</div></div>
-        <div class="stat"><div class="stat-n c2">10+</div><div class="stat-l">Organizaciones</div></div>
-        <div class="stat"><div class="stat-n c2">12</div><div class="stat-l">Talleres</div></div>
-        <div class="stat"><div class="stat-n c2">2</div><div class="stat-l">Pistas lab</div></div>
+        <div class="stat"><div class="stat-n c-magenta">200</div><div style="font-size: 10px; color: var(--muted);">Asistentes</div></div>
+        <div class="stat"><div class="stat-n c-magenta">10+</div><div style="font-size: 10px; color: var(--muted);">Organizaciones</div></div>
+        <div class="stat"><div class="stat-n c-magenta">12</div><div style="font-size: 10px; color: var(--muted);">Talleres</div></div>
+        <div class="stat"><div class="stat-n c-magenta">2</div><div style="font-size: 10px; color: var(--muted);">Pistas lab</div></div>
       </div>
-      <div class="hc-orgs">
-        <div class="hc-orgs-label">Organizaciones participantes</div>
+
+      <div style="margin-top: 1.5rem;">
+        <div style="font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase;">Organizaciones participantes</div>
         <div class="chips">
-          <span class="chip lm">ASM UTEC</span>
-          <span class="chip lm">SBE UTEC</span>
-          <span class="chip lm">RAM</span>
-          <span class="chip lm">SPB</span>
-          <span class="chip lm">BCA UTEC</span>
-          <span class="chip lm">IEEE EMBS</span>
-          <span class="chip lm">BIOMIM</span>
-          <span class="chip lm">+más</span>
+          <span class="chip">ASM UTEC</span>
+          <span class="chip">SBE UTEC</span>
+          <span class="chip">RAM</span>
+          <span class="chip">SPB</span>
+          <span class="chip">BCA UTEC</span>
+          <span class="chip">IEEE EMBS</span>
+          <span class="chip">BIOMIM</span>
+          <span class="chip">+más</span>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- SOBRE -->
-<div class="sw2" id="sobre">
-  <div class="section">
-    <p class="s-tag lm">¿Qué es NEXOBIO?</p>
-    <h2 class="s-title">El simposio bio más importante del año</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>NEXOBIO es el simposio interuniversitario de ciencias biológicas más importante del año para estudiantes de pregrado. Es un espacio donde la ciencia se vive, se conecta y se proyecta hacia el futuro.</p>
-        <p>Organizado por <strong style="color:var(--white)">ASM UTEC</strong> con el apoyo de más de 10 organizaciones estudiantiles, NEXOBIO 2026 reúne biología, microbiología, bioingeniería, bioinformática, biomédica y más en un solo día lleno de talleres, charlas y networking.</p>
-        <div class="mv-grid">
-          <div class="mv-card cy">
-            <h4>Misión</h4>
-            <p>Crear un punto de encuentro donde estudiantes de distintas carreras puedan explorar, conectar y construir comunidad científica en el Perú.</p>
-          </div>
-          <div class="mv-card mg">
-            <h4>Visión</h4>
-            <p>Consolidarse como el simposio de referencia para la comunidad bio-universitaria del país, impulsando la próxima generación de científicos.</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="objetivos-list">
-          <div class="obj-item"><div class="obj-dot" style="background:var(--cyan)"></div><p>Brindar una experiencia práctica e inmersiva en ciencias biológicas (wet lab y dry lab).</p></div>
-          <div class="obj-item"><div class="obj-dot" style="background:var(--lime)"></div><p>Visibilizar el trabajo de organizaciones estudiantiles bio a nivel nacional.</p></div>
-          <div class="obj-item"><div class="obj-dot" style="background:var(--magenta)"></div><p>Conectar a estudiantes con investigadores y profesionales de la industria.</p></div>
-          <div class="obj-item"><div class="obj-dot" style="background:var(--orange)"></div><p>Fomentar la exploración vocacional dentro del ecosistema de las ciencias de la vida.</p></div>
-          <div class="obj-item"><div class="obj-dot" style="background:var(--cyan)"></div><p>Generar redes de colaboración entre universidades del Perú.</p></div>
-        </div>
-        <div class="tema-banner">
-          <p>Tema 2026</p>
-          <h3>Biodiversidad, ciencia e innovación:<br/>el Perú que viene</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STATS BAR -->
-<div class="sw3">
-  <div class="section" style="padding-top:2.5rem;padding-bottom:2.5rem">
-    <div class="stats-bar">
-      <div class="sb-item"><div class="sb-num" style="color:var(--cyan)">150–200</div><div class="sb-label">Asistentes esperados</div></div>
-      <div class="sb-item"><div class="sb-num" style="color:var(--lime)">10+</div><div class="sb-label">Organizaciones participantes</div></div>
-      <div class="sb-item"><div class="sb-num" style="color:var(--magenta)">12</div><div class="sb-label">Talleres paralelos</div></div>
-      <div class="sb-item"><div class="sb-num" style="color:var(--orange)">5+</div><div class="sb-label">Universidades de Lima</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- AGENDA -->
-<div class="sw" id="agenda">
-  <div class="section">
-    <p class="s-tag cy">Programa</p>
-    <h2 class="s-title">Agenda · 25 de Abril</h2>
-    <p class="s-lead">Un día completo de talleres, charlas, networking y premiaciones.</p>
-    <div class="agenda-list">
-      <div class="ag-item"><div class="ag-time">8:00 AM</div><div class="ag-info"><h4>Registro y Acreditación</h4><p>Entrega de kit: lanyard, brochure y sticker. Bienvenida informal con música.</p></div><span class="ag-badge b-wh">Registro</span></div>
-      <div class="ag-item hl"><div class="ag-time">9:00 AM</div><div class="ag-info"><h4>Apertura Oficial</h4><p>Bienvenida por ASM y orgs aliadas. Presentación del tema. Bingo Humano Científico.</p></div><span class="ag-badge b-mg">Apertura</span></div>
-      <div class="ag-item"><div class="ag-time">10:00 AM</div><div class="ag-info"><h4>Coffee Break 1</h4><p>Primer break. Espacio de socialización antes de los talleres.</p></div><span class="ag-badge b-wh">Break</span></div>
-      <div class="ag-item hl"><div class="ag-time">10:20 AM</div><div class="ag-info"><h4>Bloque de Talleres — Pistas Paralelas</h4><p>Wet Lab vs Dry Lab. 2 rondas de ~45–60 min cada una con distintas organizaciones.</p></div><span class="ag-badge b-cy">Talleres</span></div>
-      <div class="ag-item"><div class="ag-time">1:00 PM</div><div class="ag-info"><h4>Almuerzo + Networking Informal</h4><p>Mapa de orígenes: pin en el mapa del Perú según tu universidad.</p></div><span class="ag-badge b-wh">Almuerzo</span></div>
-      <div class="ag-item hl"><div class="ag-time">2:00 PM</div><div class="ag-info"><h4>Presentaciones de Organizaciones e Investigadores</h4><p>8–10 min por org. + 1–2 charlas de investigadores/industria sobre biotecnología.</p></div><span class="ag-badge b-lm">Presentaciones</span></div>
-      <div class="ag-item"><div class="ag-time">3:30 PM</div><div class="ag-info"><h4>Coffee Break 2 + Foto Challenge</h4><p>Activación en redes con #NEXOBIO2026. Marco oficial del evento.</p></div><span class="ag-badge b-wh">Break</span></div>
-      <div class="ag-item hl"><div class="ag-time">3:45 PM</div><div class="ag-info"><h4>Panel de Oportunidades y Mentoring</h4><p>Panelistas comparten oportunidades nacionales e internacionales en biociencias.</p></div><span class="ag-badge b-or">Panel</span></div>
-      <div class="ag-item"><div class="ag-time">4:30 PM</div><div class="ag-info"><h4>Networking y Juegos</h4><p>Trivia Biotech (Kahoot), Speed Networking, ¿Quién soy?, Reto colaborativo. Premios.</p></div><span class="ag-badge b-cy">Networking</span></div>
-      <div class="ag-item hl"><div class="ag-time">5:30 PM</div><div class="ag-info"><h4>Cierre y Premiaciones</h4><p>Premiación mejores talleres, trivia y reto. Palabras de cierre. Foto grupal oficial.</p></div><span class="ag-badge b-mg">Cierre</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- TALLERES -->
-<div class="sw-lm" id="talleres">
-  <div class="section">
-    <p class="s-tag lm">Talleres</p>
-    <h2 class="s-title">Elige tu pista</h2>
-    <p class="s-lead">Dos pistas paralelas — los asistentes eligen una al registrarse.</p>
-    <div class="pistas">
-
-      <!-- WET LAB -->
-      <div class="pista-card">
-        <div class="pista-head wet">
-          <div class="pista-icon wet">🧪</div>
-          <div><h3>Wet Lab</h3><p>Talleres prácticos de laboratorio</p></div>
-        </div>
-        <div class="taller-row"><div><div class="t-name">Taller NeuroHistología</div><div class="t-org">NeuroUtec</div></div><span class="t-tag wet">Taller 1</span></div>
-        <div class="taller-row"><div><div class="t-name">Biotecnología Aplicada</div><div class="t-org">SBE</div></div><span class="t-tag wet">Taller 2</span></div>
-        <div class="taller-row"><div><div class="t-name">Biología Sintética</div><div class="t-org">Byos</div></div><span class="t-tag wet">Taller 3</span></div>
-        <div class="taller-row"><div><div class="t-name">Análisis Ambiental</div><div class="t-org">Ciasur</div></div><span class="t-tag wet">Taller 4</span></div>
-        <div class="taller-row"><div><div class="t-name">Biomecánica Aplicada</div><div class="t-org">UBC</div></div><span class="t-tag wet">Taller 5</span></div>
-        <div class="taller-row"><div><div class="t-name">Biotecnología Microbiana</div><div class="t-org">BIOMIM</div></div><span class="t-tag wet">Taller 6</span></div>
-      </div>
-
-      <!-- DRY LAB -->
-      <div class="pista-card">
-        <div class="pista-head dry">
-          <div class="pista-icon dry">💻</div>
-          <div><h3>Dry Lab</h3><p>Talleres computacionales y análisis</p></div>
-        </div>
-        <div class="taller-row"><div><div class="t-name">Introducción al Modelado de Proteínas</div><div class="t-org">SPBBC / RSG</div></div><span class="t-tag dry">Taller 1</span></div>
-        <div class="taller-row"><div><div class="t-name">Ingeniería Biomédica Aplicada</div><div class="t-org">EMBS</div></div><span class="t-tag dry">Taller 2</span></div>
-        <div class="taller-row"><div><div class="t-name">IA en Salud y Análisis de Datos Biomédicos</div><div class="t-org">CBA</div></div><span class="t-tag dry">Taller 3</span></div>
-        <div class="taller-row"><div><div class="t-name">Diseño de Sistemas Biológicos</div><div class="t-org">CBS</div></div><span class="t-tag dry">Taller 4</span></div>
-        <div class="taller-row"><div><div class="t-name">Modelos 3D para Sistemas Complejos en Neurociencia</div><div class="t-org">NeuroUtec</div></div><span class="t-tag dry">Taller 5</span></div>
-        <div class="taller-row"><div><div class="t-name">Ciencias Biológicas Aplicadas</div><div class="t-org">BIOMICAS</div></div><span class="t-tag dry">Taller 6</span></div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ORGANIZACIONES -->
-<div class="sw" id="organizaciones">
-  <div class="section">
-    <p class="s-tag or">Comunidad</p>
-    <h2 class="s-title">Organizaciones participantes</h2>
-    <p class="s-lead">Más de 10 organizaciones estudiantiles de distintas universidades de Lima.</p>
-    <div class="orgs-grid">
-      <div class="org-card">
-        <div class="org-logo-box"><img src="images/asm-logo.png" alt="ASM"/></div>
-        <div class="org-name">ASM UTEC</div>
-        <div class="org-area">Microbiología</div>
-        <span class="org-rol main">Organizadora Principal</span>
-      </div>
-      <!-- Agrega img src cuando tengas el logo, por ahora iniciales -->
-      <div class="org-card"><div class="org-logo-box" style="color:var(--cyan);font-size:1rem">SBE</div><div class="org-name">SBE UTEC</div><div class="org-area">Bioingeniería</div><span class="org-rol">Talleres Bioingeniería</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--lime);font-size:1rem">BIO</div><div class="org-name">BIOMICAS</div><div class="org-area">Biología</div><span class="org-rol">Participante</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--orange);font-size:1rem">GIA</div><div class="org-name">GIA GEO – UPCH</div><div class="org-area">Ingeniería Aplicada</div><span class="org-rol">Talleres Técnicos</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--cyan);font-size:1rem">IEEE</div><div class="org-name">IEEE EMBS</div><div class="org-area">Ing. Biomédica</div><span class="org-rol">Charlas y Networking</span></div>
-      <div class="org-card"><div class="org-logo-box"><img src="images/cba-logo.png" alt="CBA" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=color:var(--magenta);font-size:1rem>CBA</span>'"/></div><div class="org-name">BCA UTEC</div><div class="org-area">Biología Computacional</div><span class="org-rol">Talleres Dry Lab</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--lime);font-size:1rem">BMM</div><div class="org-name">BIOMIM</div><div class="org-area">Biomimética</div><span class="org-rol">Presentación Proyectos</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--orange);font-size:1rem">RAM</div><div class="org-name">RAM</div><div class="org-area">Biología Molecular</div><span class="org-rol">Talleres Wet Lab</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--cyan);font-size:1rem">SPB</div><div class="org-name">SPB</div><div class="org-area">Bioquímica</div><span class="org-rol">Talleres Wet Lab</span></div>
-      <div class="org-card"><div class="org-logo-box"><img src="images/ubc-logo.png" alt="UBC" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=color:var(--muted);font-size:1rem>UBC</span>'"/></div><div class="org-name">UBC</div><div class="org-area">Biomecánica</div><span class="org-rol">Presentaciones</span></div>
-      <div class="org-card"><div class="org-logo-box" style="color:var(--magenta);font-size:1rem">HELA</div><div class="org-name">Proyecto HELA</div><div class="org-area">Biomédica</div><span class="org-rol">Charlas</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- EQUIPO -->
-<div class="sw-mg2" id="equipo">
-  <div class="section">
-    <p class="s-tag mg">Organización</p>
-    <h2 class="s-title">Equipo organizador</h2>
-    <p class="s-lead">Las personas detrás de NEXOBIO 2026.</p>
-    <div class="equipo-grid">
-      <div class="eq-card"><div class="eq-foto"><span>CP</span></div><div class="eq-name">Claudia Pérez</div><div class="eq-rol">Presidenta</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>FF</span></div><div class="eq-name">Fabrizio Flores</div><div class="eq-rol">Vicepresidente</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>IB</span></div><div class="eq-name">Ivanna Baigorria</div><div class="eq-rol">Finanzas y Logística</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>JP</span></div><div class="eq-name">Joaquín Pinto</div><div class="eq-rol">Secretario</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>VV</span></div><div class="eq-name">Victoria Vargas</div><div class="eq-rol">Relaciones Públicas</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>SC</span></div><div class="eq-name">Sofia Chumpitaz</div><div class="eq-rol">Eventos</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>AL</span></div><div class="eq-name">Alejandra León</div><div class="eq-rol">Investigación</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>ALu</span></div><div class="eq-name">Andrea Luksic</div><div class="eq-rol">Divulgación Científica</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>GZ</span></div><div class="eq-name">Gabriel Zuñiga</div><div class="eq-rol">Comunidad</div></div>
-      <div class="eq-card"><div class="eq-foto"><span>DV</span></div><div class="eq-name">Daniela Vasquez</div><div class="eq-rol">Marketing</div></div>
-    </div>
-  </div>
-</div>
-  
-<!-- SPONSORS -->
-<div class="sw2" id="sponsors">
-  <div class="section sponsors-section">
-    <p class="s-tag cy">Auspiciadores</p>
-    <h2 class="s-title">Nuestros sponsors</h2>
-    <p class="s-lead" style="margin:0 auto 2rem;text-align:center">Gracias a quienes hacen posible este simposio.</p>
-    <!-- Cuando tengas los logos reemplaza los slots con <img src="..."> -->
-    <div class="sponsors-grid">
-      <div class="sponsor-slot">Logo sponsor 1</div>
-      <div class="sponsor-slot">Logo sponsor 2</div>
-      <div class="sponsor-slot">Logo sponsor 3</div>
-      <div class="sponsor-slot">Logo sponsor 4</div>
-      <div class="sponsor-slot">Logo sponsor 5</div>
-    </div>
-    <p style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:1.5rem">¿Quieres ser sponsor? <a href="mailto:asm@utec.edu.pe" style="color:var(--cyan)">Contáctanos</a></p>
-  </div>
-</div>
-
-<!-- CTA -->
-<div class="cta-wrap">
-  <div class="cta-inner">
-    <h2>¿LISTO PARA<br/><span class="cx">NEX</span><span class="mg">OBIO</span><br/>2026?</h2>
-    <p>El simposio bio más grande del año te espera.<br/>Registro gratuito — cupos limitados.</p>
-    <a href="https://forms.google.com" class="btn-primary" target="_blank" style="font-size:15px;padding:15px 40px">Regístrate Ahora</a>
-    <div class="cta-pills">
-      <div class="cta-pill"><div class="v">25 ABR</div><div class="l">Fecha</div></div>
-      <div class="cta-pill"><div class="v" style="color:var(--cyan)">Lima</div><div class="l">Presencial</div></div>
-      <div class="cta-pill"><div class="v" style="color:var(--lime)">Gratis</div><div class="l">Entrada libre</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="f-brand">
-      <img src="images/asm-logo.png" alt="ASM UTEC" class="asm-logo"/>
-      <div class="logo">NE<span class="x">X</span>OBIO 2026</div>
-      <p>Simposio interuniversitario de ciencias biológicas organizado por ASM UTEC con el apoyo de organizaciones estudiantiles de Lima.</p>
-      <span class="ht">#NEXOBIO2026</span>
-    </div>
-    <div>
-      <h4>Evento</h4>
-      <ul class="footer-list">
-        <li><a href="#agenda">Programa</a></li>
-        <li><a href="#recursos">Recursos</a></li>
-        <li><a href="#equipo">Equipo</a></li>
-        <li><a href="https://forms.google.com" target="_blank">Registro</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contacto</h4>
-      <ul class="footer-list">
-        <li><a href="mailto:asm@utec.edu.pe">asm@utec.edu.pe</a></li>
-        <li><a href="#">Lima, Perú</a></li>
-        <li><a href="https://www.instagram.com/asm.utec/" target="_blank">Instagram</a></li>
-        <li><a href="https://www.linkedin.com/company/asm-student-chapter-utec/" target="_blank">LinkedIn</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 NEXOBIO — ASM UTEC. Todos los derechos reservados.</span>
-    <span>#NEXOBIO2026</span>
-  </div>
-</footer>
 
 </body>
 </html>
