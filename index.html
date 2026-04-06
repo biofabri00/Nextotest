@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NEXOBIO 2026 — Simposio Interuniversitario</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Display:wght@900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --cyan:    #14DBF2;
@@ -321,10 +321,10 @@
     }
     .org-card:hover { border-color: rgba(20,219,242,0.25); background: rgba(20,219,242,0.03); }
     .org-logo-box {
-      width: 52px; height: 52px; border-radius: 10px;
+      width: 72px; height: 72px; border-radius: 12px;
       background: rgba(255,255,255,0.05);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 1.1rem;
+      font-family: var(--font-display); font-size: 1.2rem;
       overflow: hidden;
     }
     .org-logo-box img { width: 100%; height: 100%; object-fit: contain; }
@@ -337,6 +337,36 @@
     }
     .org-rol.main { background: rgba(239,46,242,0.12); color: var(--magenta); }
 
+    /* ── EQUIPO ── */
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+    }
+    .eq-card {
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(239,46,242,0.08);
+      background: rgba(239,46,242,0.02);
+      transition: border-color 0.2s;
+    }
+    .eq-card:hover { border-color: rgba(239,46,242,0.25); }
+    .eq-foto {
+      width: 72px; height: 72px; border-radius: 50%;
+      margin: 0 auto 0.75rem;
+      background: rgba(239,46,242,0.12);
+      border: 2px solid rgba(239,46,242,0.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      font-family: var(--font-display); font-size: 1.2rem; color: var(--magenta);
+    }
+    .eq-foto img { width: 100%; height: 100%; object-fit: cover; }
+    .eq-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .eq-rol  { font-size: 11px; color: var(--muted); }
+    @media (max-width: 900px) { .equipo-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 500px) { .equipo-grid { grid-template-columns: repeat(2,1fr); } }
+    
     /* ── SPONSORS ── */
     .sponsors-section { text-align: center; }
     .sponsors-grid {
@@ -474,6 +504,37 @@
     .hero-content > *:nth-child(3){animation-delay:0.3s}
     .hero-content > *:nth-child(4){animation-delay:0.4s}
     .hero-content > *:nth-child(5){animation-delay:0.5s}
+
+    /* ── COLOR POR SECCIÓN — solo 1 acento dominante ── */
+    
+    /* HERO — magenta principal, cyan solo en la X, lime solo en el badge */
+    .hero .stat-n.c2 { color: var(--magenta); }
+    .hero .stat-n.c3 { color: var(--magenta); }
+    .hero .stat-n.c4 { color: var(--cyan); }
+    .hero .chip.lm   { border-color: rgba(239,46,242,0.25); background: rgba(239,46,242,0.06); color: var(--magenta); }
+    .hero .chip.or   { border-color: rgba(20,219,242,0.25); background: rgba(20,219,242,0.06); color: var(--cyan); }
+    
+    /* SOBRE — solo magenta */
+    .sw-mg .obj-dot  { background: var(--magenta) !important; }
+    
+    /* AGENDA — solo cyan */
+    .sw .ag-badge.b-lm { background: rgba(20,219,242,0.1); color: var(--cyan); border-color: rgba(20,219,242,0.2); }
+    .sw .ag-badge.b-or { background: rgba(20,219,242,0.1); color: var(--cyan); border-color: rgba(20,219,242,0.2); }
+    
+    /* TALLERES — solo lime */
+    .sw-lm .t-tag.wet { background: rgba(192,217,10,0.12); color: var(--lime); border: 1px solid rgba(192,217,10,0.2); }
+    .sw-lm .t-tag.dry { background: rgba(192,217,10,0.12); color: var(--lime); border: 1px solid rgba(192,217,10,0.2); }
+    .sw-lm .pista-head.wet { background: rgba(192,217,10,0.06); border-bottom-color: rgba(192,217,10,0.15); }
+    .sw-lm .pista-head.dry { background: rgba(192,217,10,0.06); border-bottom-color: rgba(192,217,10,0.15); }
+    .sw-lm .pista-head.wet h3,
+    .sw-lm .pista-head.dry h3 { color: var(--lime); }
+    
+    /* ORGS — solo magenta */
+    .sw-mg2 .org-logo-box { color: var(--magenta); }
+    
+    /* SPONSORS — solo orange */
+    .sw-or .s-tag { color: var(--orange) !important; }
+    
   </style>
 </head>
 <body>
@@ -490,6 +551,7 @@
       <a href="#agenda">Agenda</a>
       <a href="#talleres">Talleres</a>
       <a href="#organizaciones">Organizaciones</a>
+      <a href="#equipo">Equipo</a>
       <a href="#sponsors">Sponsors</a>
       <a href="https://forms.google.com" class="nav-register" target="_blank">Regístrate</a>
     </div>
@@ -505,7 +567,11 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span>Inscripciones Abiertas · Lima, Perú</div>
-      <h1>NE<span class="cx">X</span>O<br/>BIO<br/><span class="mg">2026</span></h1>
+      <h1 style="font-family:'Big Shoulders Display',var(--font-display)">
+        NE<span class="cx">X</span>O<br/>
+        BIO<br/>
+        <span class="mg" style="font-size:0.55em;letter-spacing:0.12em">2026</span>
+      </h1>
       <div class="hero-sub">II Simposio Interuniversitario · Ciencias Biológicas</div>
       <div class="hero-tema">"Biodiversidad, ciencia e innovación: el Perú que viene"</div>
       <div class="hero-ctas">
@@ -611,32 +677,41 @@
 </div>
 
 <!-- TALLERES -->
-<div class="sw2" id="talleres">
+<div class="sw-lm" id="talleres">
   <div class="section">
-    <p class="s-tag mg">Talleres</p>
+    <p class="s-tag lm">Talleres</p>
     <h2 class="s-title">Elige tu pista</h2>
     <p class="s-lead">Dos pistas paralelas — los asistentes eligen una al registrarse.</p>
     <div class="pistas">
+
+      <!-- WET LAB -->
       <div class="pista-card">
         <div class="pista-head wet">
           <div class="pista-icon wet">🧪</div>
           <div><h3>Wet Lab</h3><p>Talleres prácticos de laboratorio</p></div>
         </div>
-        <div class="taller-row"><div><div class="t-name">Extracción de ADN</div><div class="t-org">RAM / Bio Molecular</div><div class="t-desc">Extracción de ADN de frutas. Visualización básica. Intro a biología molecular.</div></div><span class="t-tag wet">Wet Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Siembra y Microscopía</div><div class="t-org">ASM UTEC</div><div class="t-desc">Cultivo en placa y observación de microorganismos. Tinción básica.</div></div><span class="t-tag wet">Wet Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Biosíntesis / Fermentación</div><div class="t-org">SBE UTEC</div><div class="t-desc">Demostración de procesos de fermentación y producción biológica.</div></div><span class="t-tag wet">Wet Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Bioquímica Aplicada</div><div class="t-org">SPB / Bioquímica</div><div class="t-desc">Reacciones enzimáticas visuales. Aplicaciones clínicas.</div></div><span class="t-tag wet">Wet Lab</span></div>
+        <div class="taller-row"><div><div class="t-name">Taller NeuroHistología</div><div class="t-org">NeuroUtec</div></div><span class="t-tag wet">Taller 1</span></div>
+        <div class="taller-row"><div><div class="t-name">Biotecnología Aplicada</div><div class="t-org">SBE</div></div><span class="t-tag wet">Taller 2</span></div>
+        <div class="taller-row"><div><div class="t-name">Biología Sintética</div><div class="t-org">Byos</div></div><span class="t-tag wet">Taller 3</span></div>
+        <div class="taller-row"><div><div class="t-name">Análisis Ambiental</div><div class="t-org">Ciasur</div></div><span class="t-tag wet">Taller 4</span></div>
+        <div class="taller-row"><div><div class="t-name">Biomecánica Aplicada</div><div class="t-org">UBC</div></div><span class="t-tag wet">Taller 5</span></div>
+        <div class="taller-row"><div><div class="t-name">Biotecnología Microbiana</div><div class="t-org">BIOMIM</div></div><span class="t-tag wet">Taller 6</span></div>
       </div>
+
+      <!-- DRY LAB -->
       <div class="pista-card">
         <div class="pista-head dry">
           <div class="pista-icon dry">💻</div>
           <div><h3>Dry Lab</h3><p>Talleres computacionales y análisis</p></div>
         </div>
-        <div class="taller-row"><div><div class="t-name">Intro a Bioinformática</div><div class="t-org">SPB</div><div class="t-desc">Análisis de secuencias con herramientas online. Sin necesidad de programar.</div></div><span class="t-tag dry">Dry Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Modelado de Sistemas Bio</div><div class="t-org">BCA UTEC</div><div class="t-desc">Introducción a modelado computacional de sistemas biológicos.</div></div><span class="t-tag dry">Dry Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Datos en Salud / Biomédica</div><div class="t-org">IEEE EMBS</div><div class="t-desc">Visualización de datos clínicos. Diagnóstico asistido por IA.</div></div><span class="t-tag dry">Dry Lab</span></div>
-        <div class="taller-row"><div><div class="t-name">Biomecánica Computacional</div><div class="t-org">BIOMIM / UBC</div><div class="t-desc">Simulaciones básicas de movimiento y estructura biológica.</div></div><span class="t-tag dry">Dry Lab</span></div>
+        <div class="taller-row"><div><div class="t-name">Introducción al Modelado de Proteínas</div><div class="t-org">SPBBC / RSG</div></div><span class="t-tag dry">Taller 1</span></div>
+        <div class="taller-row"><div><div class="t-name">Ingeniería Biomédica Aplicada</div><div class="t-org">EMBS</div></div><span class="t-tag dry">Taller 2</span></div>
+        <div class="taller-row"><div><div class="t-name">IA en Salud y Análisis de Datos Biomédicos</div><div class="t-org">CBA</div></div><span class="t-tag dry">Taller 3</span></div>
+        <div class="taller-row"><div><div class="t-name">Diseño de Sistemas Biológicos</div><div class="t-org">CBS</div></div><span class="t-tag dry">Taller 4</span></div>
+        <div class="taller-row"><div><div class="t-name">Modelos 3D para Sistemas Complejos en Neurociencia</div><div class="t-org">NeuroUtec</div></div><span class="t-tag dry">Taller 5</span></div>
+        <div class="taller-row"><div><div class="t-name">Ciencias Biológicas Aplicadas</div><div class="t-org">BIOMICAS</div></div><span class="t-tag dry">Taller 6</span></div>
       </div>
+
     </div>
   </div>
 </div>
@@ -669,6 +744,58 @@
   </div>
 </div>
 
+<!-- EQUIPO -->
+<div class="sw-mg2" id="equipo">
+  <div class="section">
+    <p class="s-tag mg">Organización</p>
+    <h2 class="s-title">Equipo organizador</h2>
+    <p class="s-lead">Las personas detrás de NEXOBIO 2026.</p>
+    <div class="equipo-grid">
+
+      <!-- Duplica este bloque para cada integrante -->
+      <div class="eq-card">
+        <div class="eq-foto">
+          <!-- Cuando tengas foto: <img src="images/nombre.jpg"/> -->
+          <span>AB</span>
+        </div>
+        <div class="eq-name">Ana Bermúdez</div>
+        <div class="eq-rol">Coordinación General</div>
+      </div>
+
+      <div class="eq-card">
+        <div class="eq-foto"><span>MR</span></div>
+        <div class="eq-name">Marco Ríos</div>
+        <div class="eq-rol">Marketing</div>
+      </div>
+
+      <div class="eq-card">
+        <div class="eq-foto"><span>LP</span></div>
+        <div class="eq-name">Lucía Pérez</div>
+        <div class="eq-rol">Talleres</div>
+      </div>
+
+      <div class="eq-card">
+        <div class="eq-foto"><span>DT</span></div>
+        <div class="eq-name">Diego Torres</div>
+        <div class="eq-rol">Logística</div>
+      </div>
+
+      <div class="eq-card">
+        <div class="eq-foto"><span>VS</span></div>
+        <div class="eq-name">Valeria Silva</div>
+        <div class="eq-rol">Relaciones</div>
+      </div>
+
+      <div class="eq-card">
+        <div class="eq-foto"><span>GC</span></div>
+        <div class="eq-name">Gabriel Castro</div>
+        <div class="eq-rol">Finanzas</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
 <!-- SPONSORS -->
 <div class="sw2" id="sponsors">
   <div class="section sponsors-section">
